@@ -7,7 +7,7 @@ export const dynamic = 'force-dynamic';
 export const revalidate = 0;
 
 export default async function sitemap(): Promise<MetadataRoute.Sitemap> {
-  const baseUrl = 'https://www.neurobity.com';
+  const baseUrl = 'https://neurobity.com';
 
   // Obtener todos los posts publicados de la base de datos
   const blogPosts = await db.select().from(posts);
