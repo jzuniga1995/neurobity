@@ -177,16 +177,15 @@ function Pagination({ currentPage, totalPages }: PaginationProps) {
   );
 }
 
-interface SearchParams {
-  page?: string;
-}
-
+// ✅ FIX: searchParams es ahora una Promise en Next.js 15
 interface BlogPageProps {
-  searchParams: SearchParams;
+  searchParams: Promise<{ page?: string }>;
 }
 
 export default async function BlogPage({ searchParams }: BlogPageProps) {
-  const currentPage = parseInt(searchParams?.page || '1');
+  // ✅ Await searchParams
+  const params = await searchParams;
+  const currentPage = parseInt(params?.page || '1');
   const offset = (currentPage - 1) * POSTS_PER_PAGE;
 
   // Obtener posts paginados
